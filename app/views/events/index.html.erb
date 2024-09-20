@@ -1,0 +1,106 @@
+<div class="content3">
+  <h1>Evènements</h1>
+    <% if user_session %>
+      <%= link_to new_event_path, class: 'add' do%>
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+    <% end %>
+  <br><br>
+  <div class="events">
+    <% @events.each do |event| %>
+      <div class="event">
+      <h2><%= event.title %></h2>
+      <% if policy(event).destroy? %>
+        <%= button_to event_path(event), class: 'trash',
+          method: :delete,
+          data: { confirm: "Are you sure?" } do%>
+          <h2><i class="fa-regular fa-trash-can"></i></h2>
+          <% end %>
+      <% end %>
+      </div>
+      <br><br>
+      <div class="thumbnails">
+        <% event.photos.each_with_index do |photo, index| %>
+          <% if photo.present?%>
+            <%= cl_image_tag photo.key, class: 'thumbnail', data: { 'bs-toggle': 'modal', 'bs-target': "#carousel-#{event.id}", 'bs-slide-to': index } %>
+          <% end %>
+        <% end %>
+      </div>
+      <br><br>
+      <!-- Carousel -->
+      <div id="carousel-<%= event.id %>" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <%# <div class="modal-header">
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> %>
+            <div class="modal-body p-0">
+              <div id="eventCarousel-<%= event.id %>" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+                  <% event.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                      <% if photo.present? %>
+                        <%= cl_image_tag photo.key, class: 'd-block' %>
+                      <% else %>
+                        <p>Pas d'image disponible</p>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel-<%=event.id%>" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel-<%=event.id%>" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Pour chaque modale (chaque carousel d'événements)
+          document.querySelectorAll('.modal').forEach(function (myModalEl) {
+            var eventId = myModalEl.getAttribute('id').split('-')[1]; // Récupère l'ID de l'événement
+            var myCarousel = document.querySelector('#eventCarousel-' + eventId); // Cible le carousel de cet événement
+
+            // Récupère ou initialise l'instance du carousel
+            var bsCarousel = new bootstrap.Carousel(myCarousel, {
+              interval: false,  // Désactive le défilement automatique
+              ride: false       // Pas de démarrage automatique
+            });
+
+            // Lors de l'ouverture de la modale
+            myModalEl.addEventListener('show.bs.modal', function (event) {
+              const trigger = event.relatedTarget; // Bouton ou image cliqué
+              var slideToIndex = trigger.getAttribute('data-bs-slide-to'); // Récupère l'index de l'image cliquée
+
+              if (bsCarousel) {
+                bsCarousel.to(slideToIndex); // Passe directement à l'image cliquée
+              }
+            });
+          });
+          const images = document.querySelectorAll('.carousel-inner img');
+
+            images.forEach(function(image) {
+              // Attendre que l'image soit chargée pour obtenir ses dimensions
+              image.onload = function() {
+                if (image.naturalWidth > image.naturalHeight) {
+                  // Si l'image est en paysage, ajouter la classe "landscape"
+                  image.classList.add('landscape');
+                } else {
+                  // Sinon, ajouter la classe "portrait"
+                  image.classList.add('portrait');
+                }
+              };
+            });
+        });
+      </script>
+    <% end %>
+  </div>
+</div>

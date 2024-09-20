@@ -1,0 +1,24 @@
+#footer{
+  padding: 30px;
+  background: rgb(30, 30, 30);
+  color: lightgrey;
+  flex-shrink: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+#footer h3{
+  text-align: center;
+}
+
+#footer p {
+  text-align: center;
+}
+
+#footer a {
+  color: lightgrey;
+  font-size: 20px;
+}
+#footer a:hover {
+  color: white;
+}

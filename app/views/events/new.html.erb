@@ -1,0 +1,15 @@
+<div class="contenu">
+  <h3>Créez votre évènement dans le champ ci-dessous</h3>
+  <br><br><br>
+  <%= simple_form_for(@event) do |f| %>
+    <div class="field">
+      <%= f.input :title, label: 'Titre' %>
+
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Sauvegarder', class:'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

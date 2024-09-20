@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="carrousel">
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "respiration.jpg", class: "img_card d-block w-100", alt: "Respiration" %>')">
+          <div class="resume">
+            <h2>Respiration</h2>
+            <h2>La respiration est un élément <strong>très important</strong> dans la pratique de l'Aïkido</h2>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "relaxation.jpg", class: "img_card d-block w-100", alt: "Relaxation" %>')">
+          <div class="resume">
+            <h2>Relaxation</h2>
+            <h2>Un corps relaxé est plus <strong> efficace et fluide</strong> dans ses mouvements</h2>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "coordination.jpg", class: "img_card d-block w-100", alt: "Coordination" %>')">
+          <div class="resume">
+            <h2>Coordination</h2>
+            <h2>La coordination du corps et de l'esprit est  <strong>essentielle</strong> dans la pratique de l'Aïkido</h2>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path "unification.jpg", class: "img_card d-block w-100", alt: "Unification" %>')">
+          <div class="resume">
+            <h2>Unification</h2>
+            <h2><strong>L'esprit</strong> bouge le corps</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <br>
+    <h1>Accueil</h1>
+    <br>
+    <div class="but">
+      <p>
+        Ki No Kenkyukaï Musubi, école issue du Ki No Kenkyukaï International fondée par le Doshu Kenjiro
+        Yoshigasaki, selon l'enseignement du Shinshin Toïtsu Aïkido fondé par Maître Koïchi Toheï
+        (Aïkido avec coordination de l'esprit et du corps), plus simplement nommé : Ki Aïkido.
+      </p>
+    </div>
+    <br>
+    <div class="news">
+      <h2>Actualités</h2>
+      <br>
+      <ul>
+        <% @actualities.each do |actuality| %>
+        <li><%= actuality.content %>
+            <% if policy(actuality).destroy? %>
+              <%= button_to actuality_path(actuality), class: 'trash',
+                method: :delete,
+                data: { confirm: "Are you sure?" } do%>
+                <i class="fa-regular fa-trash-can"></i>
+                <% end %>
+            <% end %>
+        </li>
+        <br>
+        <% end %>
+      </ul>
+      <% if user_session %>
+        <%= link_to new_actuality_path, class: 'add' do%>
+          <i class="fa-solid fa-plus">Créer vos actualités</i>
+        <% end %>
+      <% end %>
+      <br>
+      <div class="card-product2">
+        <%= image_tag("ki.gif", width: 189, class:"img_card", alt: "Aïkido") %>
+        <div class="card-product-infos">
+          <p>Shinshin Toïtsu Aïkido avec coordination de l'esprit et du corps, plus simplement nommé : Ki-Aïkido (Ecole fondée par Maître Koïchi Toheï)</p>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="but">
+      <p>Promouvoir la pratique du Ki-Aïkido selon l'enseignement du Maître Kenjiro Yoshigasaki, élève direct du Maître fondateur du Ki-Aïkido : Koïchi Toheï.</p>
+      <br>
+      <p>L'association considère le Ki-Aïkido comme un élément important de l'éducation, de la culture, de la santé publique, de l'intégration et de la participation à la vie sociale.</p>
+      <br>
+      <p>Elle s'interdit toutes discriminations basées notamment sur la race, le sexe, les opinions politiques, philosophiques ou religieuses.</p>
+      <br>
+      <p>Elle s'engage à respecter les droits de l'homme et la liberté d'opinion, et elle s'engage à respecter les règles d'hygiène et de sécurité applicables aux disciplines pratiquées en son sein.</p>
+    </div>
+    <br>
+  </div>
+</div>
