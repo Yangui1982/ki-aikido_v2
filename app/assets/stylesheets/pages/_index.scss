@@ -1,2 +1,203 @@
-// Import page-specific CSS files here.
-@import "home";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.carrousel {
+  width: 100%;
+}
+.carousel-item {
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.content {
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: whitesmoke;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+ button {
+  border: none;
+  color: black;
+  background-color: whitesmoke;
+ }
+
+.logout{
+  color: black;
+}
+.content h1{
+ text-align: center;
+ margin: 0;
+}
+
+.card h2 {
+  font-family: Courier;
+  text-align: center;
+  color: black;
+  font-weight: lighter;
+  font-size: 30px;
+}
+
+.resume {
+  padding-top: 50vh;
+  padding-bottom: 10vh;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.description{
+  margin-top : 300px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.news {
+  font-size: 17px;
+  font-family: Helvetica;
+}
+
+.news h2 {
+  text-align: center;
+}
+
+.news ul {
+  padding-left: 20px;
+}
+
+.img_card {
+  width: 100%;
+  background-size: cover;
+  background-position: bottom;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+
+.log a{
+  color: whitesmoke;
+  font-size: 20px;
+}
+ ul {
+  list-style: none;
+  padding-right: 20px;
+  text-align: justify !important;
+ }
+
+ .text {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+}
+.add a {
+  text-decoration: none;
+}
+
+.card-product2 {
+  margin-left: 15%;
+  margin-right: 15%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 6%
+}
+
+.card-product2 img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-product2 p {
+  font-size: 17px;
+  font-family: Helvetica;
+  line-height: 1.4;
+  margin-bottom: 0;
+  margin-top: 8px;
+  text-align: justify;
+}
+
+.card-product2 .card-product-infos {
+  padding: 12px;
+}
+
+.but {
+  margin-top: 1rem;
+  margin-bottom: 35px;
+}
+
+.but p{
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 17px;
+  font-family: Helvetica;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+@media(max-width: 1076px) {
+  .content {
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: auto;
+  }
+}
+
+@media(max-width: 790px) {
+  .content {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media(max-width: 768px) {
+  .card-product2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width: 425px) {
+  .resume {
+    padding-top: 40vh !important;
+    font-size: 10px !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+@media(max-width: 320px) {
+  .resume h2 {
+    font-size: 12px !important;
+  }
+  .carousel-item {
+    height : 49vh;
+  }
+}
+
+@media(max-width: 280px) {
+  .content {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .card-product2 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
